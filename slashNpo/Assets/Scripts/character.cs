@@ -28,6 +28,8 @@ public class character : MonoBehaviour {
 	private Vector3 attack_pos;
 
 	public GameObject ballon;
+
+	public mainController main;
 	
 
 	Animator anims;
@@ -44,7 +46,8 @@ public class character : MonoBehaviour {
 	}	
 
 	void Update () {
-		processAnims();		
+		processAnims();	
+		changeEnergy (character_energy);
 	}
 
 	//inicializa o personagem com as características imputadas
@@ -64,6 +67,8 @@ public class character : MonoBehaviour {
 	void changeAnim(int anim){
 		character_current_anim = anim;
 	}
+		
+
 
 	//muda o estado da energia
 	void changeEnergy(int energy){
@@ -82,7 +87,7 @@ public class character : MonoBehaviour {
 	void processAnims(){		
 		if(character_current_anim!=0){
 			anim_timer -= Time.deltaTime;			
-			transform.position = Vector3.Lerp(initial_pos,attack_pos,0.25f);			
+			transform.position = Vector3.Lerp(initial_pos,attack_pos,0.25f);	
 			if(anim_timer<attack_timer/2)
 				changeAnim("none");
 			if(anim_timer<0){
